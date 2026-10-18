@@ -128,7 +128,7 @@ giftWrapper.addEventListener('click', () => {
         if (ageReveal) ageReveal.classList.add('show');
         setTimeout(() => {
             go('page3.html');
-        }, 3000);
+        }, 1000);
         return;
     }
 
@@ -145,8 +145,8 @@ giftWrapper.addEventListener('click', () => {
         if (ageReveal) ageReveal.classList.add('show');
     }, 1250);
 
-    // 4. Lanjut ke halaman berikutnya
+    // 4. Lanjut ke halaman berikutnya (1 detik setelah angka 17 muncul)
     setTimeout(() => {
         go('page3.html');
-    }, 5000);
+    }, 2250);
 });
