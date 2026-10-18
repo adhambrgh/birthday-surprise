@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 typingDone = true;
                 const caret = wishEl.querySelector('.caret');
                 if (caret) caret.remove();
-                // 3 detik setelah ucapan selesai -> halaman terakhir
-                setTimeout(() => go('page8.html'), 3000);
+                // 1 detik setelah ucapan selesai -> halaman terakhir
+                setTimeout(() => go('page8.html'), 1000);
             }
         }
         step();
