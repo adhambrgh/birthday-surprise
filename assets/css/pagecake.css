@@ -382,10 +382,12 @@
    ========================= */
 
 .blow-hint {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(26px, 7vw, 38px);
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 0 16px rgba(255, 150, 200, 0.45);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(20px, 5vw, 28px);
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: 0 0 14px rgba(255, 150, 200, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
     animation: hintPulse 1.6s ease-in-out infinite;
     transition: opacity 0.5s ease;
 }
