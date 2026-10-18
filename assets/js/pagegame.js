@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 3 detik lalu otomatis ke page8
             setTimeout(() => {
                 resultOverlay.classList.remove('show');
-                setTimeout(() => go('page8.html'), 350);
+                setTimeout(() => go('pagecake.html'), 350);
             }, 3000);
         } else {
             resultEmoji.textContent = '💪';
@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (skipBtn) {
         skipBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            go('page8.html');
+            go('pagecake.html');
         });
     }
 
