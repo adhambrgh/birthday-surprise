@@ -19,7 +19,7 @@ function updateCountdown() {
         document.getElementById('jam').textContent = '00';
         document.getElementById('menit').textContent = '00';
         document.getElementById('detik').textContent = '00';
-        document.getElementById('remaining').textContent = 'Tersisa 00:00 lagi';
+        document.getElementById('remaining').style.display = 'none';
         countdownDone = true;
         ctaBtn.classList.remove('locked');
         ctaBtn.removeAttribute('disabled');
