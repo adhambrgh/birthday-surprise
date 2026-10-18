@@ -163,8 +163,8 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 24px;
-    height: 76px;
+    gap: 20px;
+    height: 88px;
     z-index: 2;
     margin-bottom: -8px;
 }
@@ -175,7 +175,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    height: 76px;
+    height: 88px;
 }
 
 .candle-body {
@@ -190,10 +190,36 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
 }
 
+/* --- Lilin angka 17 (di tengah) --- */
+.candle--num {
+    justify-content: flex-end;
+}
+
+.candle-num {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: #ffd54f;
+    background: linear-gradient(180deg, #fff3b8 0%, #ffd54f 55%, #ffab00 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(255, 210, 80, 0.55))
+        drop-shadow(0 3px 5px rgba(0, 0, 0, 0.4));
+    padding-bottom: 2px;
+}
+
+.flame--num {
+    bottom: 54px;
+}
+
 /* --- Api lilin --- */
 .flame {
     position: absolute;
-    top: 4px;
+    bottom: 46px;
     left: 50%;
     width: 14px;
     height: 24px;
