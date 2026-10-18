@@ -69,7 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
     /* === Video Init === */
     if (video) {
         video.preload = 'auto';
-        video.play().catch(() => {});
+        if (video.readyState >= 2) {
+            video.play().catch(() => {});
+        } else {
+            video.addEventListener('canplay', () => {
+                video.play().catch(() => {});
+            }, { once: true });
+        }
         video.addEventListener('loadedmetadata', updateControls);
         video.addEventListener('timeupdate', updateControls);
         video.addEventListener('progress', () => {

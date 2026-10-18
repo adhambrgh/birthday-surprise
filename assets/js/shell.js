@@ -68,13 +68,14 @@
 
     window.frameGo = function (url, delay) {
         transition.classList.add('active');
+        var d = delay || 600;
         setTimeout(function () {
             var frame = document.getElementById('frame');
             if (frame) frame.src = url;
-        }, delay || 1600);
+        }, d);
         setTimeout(function () {
             transition.classList.remove('active');
-        }, (delay || 1600) + 1500);
+        }, d + 900);
     };
 
     window.frameEnter = function () {
