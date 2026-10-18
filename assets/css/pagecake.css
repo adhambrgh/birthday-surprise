@@ -193,7 +193,7 @@
 /* --- Lilin angka 17 (di tengah) --- */
 .candle--num {
     justify-content: flex-end;
-    transform: translateY(-24px);
+    transform: translateY(-12px);
 }
 
 .candle-num {
