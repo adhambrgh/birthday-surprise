@@ -113,12 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
     /* === Pop effect === */
     function popBalloon(el, e) {
         if (!running || el.classList.contains('popped')) return;
-        el.classList.add('popped');
 
-        const rect = el.getBoundingClientRect();
+        // Ukur posisi SEBELUM class 'popped' dipasang (class itu menghapus
+        // transform rising, sehingga balon akan melompat ke posisi awal)
+        const bodyEl = el.querySelector('.balloon-body');
+        const rect = (bodyEl || el).getBoundingClientRect();
         const areaRect = gameArea.getBoundingClientRect();
         const cx = rect.left - areaRect.left + rect.width / 2;
         const cy = rect.top - areaRect.top + rect.height / 2;
+        const popSize = rect.width;
+
+        el.classList.add('popped');
 
         const color = getComputedStyle(el.querySelector('.balloon-body')).background;
 
@@ -138,8 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ring.className = 'pop-ring';
             ring.style.left = cx + 'px';
             ring.style.top = cy + 'px';
-            ring.style.width = (rect.width * 1.1) + 'px';
-            ring.style.height = (rect.width * 1.1) + 'px';
+            ring.style.width = (popSize * 1.1) + 'px';
+            ring.style.height = (popSize * 1.1) + 'px';
             gameArea.appendChild(ring);
             setTimeout(() => ring.remove(), 500);
         }
@@ -185,8 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const poof = document.createElement('div');
             poof.className = 'pop-poof';
             poof.textContent = '💥';
-            poof.style.left = (cx - 15) + 'px';
-            poof.style.top = (cy - 15) + 'px';
+            poof.style.left = cx + 'px';
+            poof.style.top = cy + 'px';
             gameArea.appendChild(poof);
             setTimeout(() => poof.remove(), 650);
 
@@ -200,8 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const sf = document.createElement('div');
         sf.className = 'score-float';
         sf.textContent = '+1';
-        sf.style.left = (cx - 10) + 'px';
-        sf.style.top = (cy - 10) + 'px';
+        sf.style.left = cx + 'px';
+        sf.style.top = cy + 'px';
         gameArea.appendChild(sf);
         setTimeout(() => sf.remove(), 850);
 
