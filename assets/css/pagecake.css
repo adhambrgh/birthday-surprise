@@ -212,10 +212,6 @@
     padding-bottom: 2px;
 }
 
-.flame--num {
-    bottom: 54px;
-}
-
 /* --- Api lilin --- */
 .flame {
     position: absolute;
@@ -256,6 +252,10 @@
     opacity: 0;
     transform: scaleY(0.1) scaleX(0.4) translateY(-4px);
     box-shadow: none;
+}
+
+.flame--num {
+    bottom: 57px;
 }
 
 /* =========================

@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* === Typewriter === */
     const texts = [
-        "Selamat ulang tahun, sayangku! Hari ini adalah hari yang paling istimewa karena dengan kehadiranmu dunia menjadi lebih indah. Setiap detik bersamamu adalah anugerah yang tak ternilai, asekkk",
+        "Selamat ulang tahun, sayangku Hari ini adalah hari yang paling istimewa karena dengan kehadiranmu dunia menjadi lebih indah. Setiap detik bersamamu adalah anugerah yang tak ternilai, asekkk",
         "Terima kasih sudah menjadi bagian terbaik dari hari-hariku. Terima kasih untuk setiap senyuman, tawa, dan kebahagiaan yang kamu bagikan. Kehadiranmu adalah pelangi di tengah hujan.",
         "Di usia yang baru ini, semoga semua impianmu perlahan menjadi kenyataan. Tenang ada aku yang ingin mewujudkan whislistmu satu persatu. Semoga kebahagiaan menyertai setiap langkahmu dan doa baik selalu mengiringi hidupmu.",
         "Jangan pernah lelah menjadi dirimu sendiri, karena kamu sempurna dengan caramu yang tak bisa digantikan siapa pun. Aku bangga bisa ada di sisimu, yang selalu ada buat kamu.",
