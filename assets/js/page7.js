@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (nextBtn) {
         nextBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            go('page8.html');
+            go('pagegame.html');
         });
     }
 });
