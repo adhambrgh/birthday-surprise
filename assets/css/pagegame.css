@@ -268,12 +268,83 @@
     border-radius: 50% 50% 45% 55%;
     pointer-events: none;
     z-index: 3;
-    animation: popFly 0.55s ease-out forwards;
+    animation: popFly 0.7s ease-out forwards;
 }
 
 @keyframes popFly {
     0% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
-    100% { opacity: 0; transform: translate(var(--fx, 20px), var(--fy, 20px)) scale(0.3) rotate(var(--fr, 180deg)); }
+    55% { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--fx, 20px), var(--fy, 20px)) scale(0.25) rotate(var(--fr, 180deg)); }
+}
+
+.pop-fragment.fall {
+    animation: popFall 0.9s cubic-bezier(0.3, 0.1, 0.7, 1) forwards;
+}
+
+@keyframes popFall {
+    0% { opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg); }
+    30% { opacity: 1; transform: translate(var(--fx, 20px), var(--fy, 20px)) scale(0.9) rotate(var(--fr, 90deg)); }
+    100% { opacity: 0; transform: translate(calc(var(--fx, 20px) * 1.4), calc(var(--fy, 20px) + 70px)) scale(0.4) rotate(calc(var(--fr, 90deg) * 2)); }
+}
+
+/* Shockwave ring ledakan */
+.pop-ring {
+    position: absolute;
+    border: 3px solid rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 3;
+    animation: popRing 0.45s ease-out forwards;
+}
+
+@keyframes popRing {
+    0% { opacity: 0.95; transform: translate(-50%, -50%) scale(0.15); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(2.6); }
+}
+
+/* Kilatan kilat ledakan */
+.pop-flash {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 220, 130, 0.7) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 3;
+    animation: popFlash 0.18s ease-out forwards;
+}
+
+@keyframes popFlash {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(0.4); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+}
+
+/* Sparkle confetti ledakan */
+.pop-spark {
+    position: absolute;
+    font-size: 14px;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 3;
+    animation: popSpark 0.8s ease-out forwards;
+}
+
+@keyframes popSpark {
+    0% { opacity: 1; transform: translate(0, 0) scale(0.5) rotate(0deg); }
+    30% { opacity: 1; transform: translate(var(--sx, 40px), var(--sy, -40px)) scale(1.1) rotate(120deg); }
+    100% { opacity: 0; transform: translate(calc(var(--sx, 40px) * 1.6), calc(var(--sy, -40px) + 50px)) scale(0.6) rotate(340deg); }
+}
+
+/* Screen shake game-area */
+.game-area.shake {
+    animation: areaShake 0.22s ease-in-out;
+}
+
+@keyframes areaShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px) translateY(2px); }
+    50% { transform: translateX(3px) translateY(-2px); }
+    75% { transform: translateX(-2px) translateY(1px); }
 }
 
 .pop-poof {
@@ -464,5 +535,12 @@
 
     .balloon.rising {
         animation-duration: var(--dur-slow, 10s);
+    }
+
+    .pop-fragment,
+    .pop-fragment.fall,
+    .pop-poof,
+    .score-float {
+        animation-duration: 0.25s !important;
     }
 }

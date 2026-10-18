@@ -49,16 +49,34 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             if (audioCtx.state === 'suspended') audioCtx.resume();
             const t = audioCtx.currentTime;
+
+            // Nada "pop" melengkung turun
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.type = 'sine';
             osc.frequency.setValueAtTime(420 + Math.random() * 260, t);
-            osc.frequency.exponentialRampToValueAtTime(90, t + 0.12);
-            gain.gain.setValueAtTime(0.22, t);
-            gain.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+            osc.frequency.exponentialRampToValueAtTime(90, t + 0.1);
+            gain.gain.setValueAtTime(0.25, t);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + 0.13);
             osc.connect(gain).connect(audioCtx.destination);
             osc.start(t);
-            osc.stop(t + 0.16);
+            osc.stop(t + 0.15);
+
+            // Noise burst kecil biar terasa "meledak"
+            const bufSize = Math.floor(audioCtx.sampleRate * 0.12);
+            const buf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate);
+            const data = buf.getChannelData(0);
+            for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / bufSize);
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buf;
+            const nGain = audioCtx.createGain();
+            nGain.gain.setValueAtTime(0.16, t);
+            nGain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+            const nFilter = audioCtx.createBiquadFilter();
+            nFilter.type = 'lowpass';
+            nFilter.frequency.value = 2400;
+            noise.connect(nFilter).connect(nGain).connect(audioCtx.destination);
+            noise.start(t);
         } catch (e) {}
     }
 
@@ -103,15 +121,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const cy = rect.top - areaRect.top + rect.height / 2;
 
         const color = getComputedStyle(el.querySelector('.balloon-body')).background;
-        const fragCount = reduceMotion ? 4 : 7;
+
+        // Kilatan kilat ledakan (langsung, biar terasa "DUG")
+        if (!reduceMotion) {
+            const flash = document.createElement('div');
+            flash.className = 'pop-flash';
+            flash.style.left = cx + 'px';
+            flash.style.top = cy + 'px';
+            gameArea.appendChild(flash);
+            setTimeout(() => flash.remove(), 220);
+        }
+
+        // Shockwave ring
+        if (!reduceMotion) {
+            const ring = document.createElement('div');
+            ring.className = 'pop-ring';
+            ring.style.left = cx + 'px';
+            ring.style.top = cy + 'px';
+            ring.style.width = (rect.width * 1.1) + 'px';
+            ring.style.height = (rect.width * 1.1) + 'px';
+            gameArea.appendChild(ring);
+            setTimeout(() => ring.remove(), 500);
+        }
+
+        // Fragment: separuh meledak ke segala arah, separuh lagi memantul jatuh
+        const fragCount = reduceMotion ? 5 : 14;
         for (let i = 0; i < fragCount; i++) {
             const f = document.createElement('div');
-            f.className = 'pop-fragment';
-            const fs = 8 + Math.random() * 12;
-            const angle = (Math.PI * 2 * i) / fragCount + Math.random() * 0.5;
-            const dist = 30 + Math.random() * 45;
+            f.className = 'pop-fragment' + (i % 2 ? ' fall' : '');
+            const fs = 7 + Math.random() * 13;
+            const angle = (Math.PI * 2 * i) / fragCount + Math.random() * 0.6;
+            const dist = 34 + Math.random() * 55;
             f.style.width = fs + 'px';
-            f.style.height = fs * 1.1 + 'px';
+            f.style.height = fs * 1.15 + 'px';
             f.style.left = cx + 'px';
             f.style.top = cy + 'px';
             f.style.background = color;
@@ -119,10 +161,27 @@ document.addEventListener('DOMContentLoaded', () => {
             f.style.setProperty('--fy', Math.sin(angle) * dist + 'px');
             f.style.setProperty('--fr', (Math.random() * 360 - 180) + 'deg');
             gameArea.appendChild(f);
-            setTimeout(() => f.remove(), 600);
+            setTimeout(() => f.remove(), 950);
         }
 
+        // Confetti sparkle ✨ terpental lebih jauh
         if (!reduceMotion) {
+            const sparks = ['✨', '⭐', '✨', '🌟', '✨', '💫'];
+            for (let i = 0; i < 6; i++) {
+                const s = document.createElement('div');
+                s.className = 'pop-spark';
+                s.textContent = sparks[i];
+                const angle = (Math.PI * 2 * i) / 6 + Math.random() * 0.7;
+                const dist = 55 + Math.random() * 50;
+                s.style.left = cx + 'px';
+                s.style.top = cy + 'px';
+                s.style.setProperty('--sx', Math.cos(angle) * dist + 'px');
+                s.style.setProperty('--sy', Math.sin(angle) * dist + 'px');
+                gameArea.appendChild(s);
+                setTimeout(() => s.remove(), 850);
+            }
+
+            // 💥 poof
             const poof = document.createElement('div');
             poof.className = 'pop-poof';
             poof.textContent = '💥';
@@ -130,6 +189,12 @@ document.addEventListener('DOMContentLoaded', () => {
             poof.style.top = (cy - 15) + 'px';
             gameArea.appendChild(poof);
             setTimeout(() => poof.remove(), 650);
+
+            // Screen shake halus
+            gameArea.classList.remove('shake');
+            void gameArea.offsetWidth;
+            gameArea.classList.add('shake');
+            setTimeout(() => gameArea.classList.remove('shake'), 260);
         }
 
         const sf = document.createElement('div');
