@@ -1,0 +1,279 @@
+/* ==========================================================================
+   NEXT-BUTTON.CSS
+   Satu sumber kebenaran untuk semua tombol navigasi antar-halaman.
+   Dimuat PALING AKHIR di setiap halaman agar menang cascade.
+   ========================================================================== */
+
+/* =========================
+   BASE
+   ========================= */
+
+.nav-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    /* Pill ramping, tetap terasa seperti referensi */
+    width: min(400px, 100%);
+    max-width: 100%;
+    min-height: 58px;
+    padding: 13px 34px;
+    box-sizing: border-box;
+
+    border-radius: 999px;
+    border: 1.5px solid rgba(255, 255, 255, 0.72);
+
+    /* Gradient pink merata + glow */
+    background: linear-gradient(100deg, #ff5f9e 0%, #ff7fae 55%, #ff8fb9 100%);
+    background-clip: padding-box;
+
+    color: #ffffff;
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: 0.4px;
+    text-transform: none;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 2px 8px rgba(176, 36, 92, 0.32);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 143, 185, 0.20),
+        0 10px 28px rgba(255, 90, 145, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+
+    cursor: pointer;
+    overflow: hidden;
+    isolation: isolate;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+
+    transition:
+        transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.28s ease,
+        filter 0.28s ease;
+}
+
+/* Ikon hati kiri & kanan */
+.nav-btn__heart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    filter: drop-shadow(0 2px 3px rgba(176, 36, 92, 0.32));
+}
+
+.nav-btn__heart svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Label teks */
+.nav-btn__label {
+    display: inline-block;
+    min-width: 0;
+}
+
+/* Efek kilau (shine sweep) */
+.nav-btn::after {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -60%;
+    width: 45%;
+    height: 220%;
+    background: linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.55) 45%,
+        rgba(255, 255, 255, 0.15) 60%,
+        transparent 100%
+    );
+    transform: skewX(-22deg);
+    animation: navShine 3.8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Inner highlight halus di tepi atas */
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0.04) 45%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes navShine {
+    0%   { left: -60%; }
+    55%  { left: 130%; }
+    100% { left: 130%; }
+}
+
+/* Glow bernafas lembut */
+.nav-btn {
+    animation: navGlow 3.2s ease-in-out infinite;
+}
+
+@keyframes navGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 0 3px rgba(255, 143, 185, 0.20),
+            0 10px 28px rgba(255, 90, 145, 0.38),
+            inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    }
+    50% {
+        box-shadow:
+            0 0 0 4px rgba(255, 143, 185, 0.30),
+            0 13px 38px rgba(255, 90, 145, 0.50),
+            inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    }
+}
+
+/* =========================
+   INTERAKSI
+   ========================= */
+
+.nav-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    filter: brightness(1.05);
+    box-shadow:
+        0 0 0 5px rgba(255, 143, 185, 0.28),
+        0 14px 40px rgba(255, 90, 145, 0.52),
+        inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    animation-play-state: paused;
+}
+
+.nav-btn:active {
+    transform: translateY(0) scale(0.97);
+    filter: brightness(0.98);
+    transition-duration: 0.1s;
+}
+
+.nav-btn:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.9);
+    outline-offset: 4px;
+}
+
+/* State terkunci (page1 sebelum countdown selesai) */
+.nav-btn[disabled],
+.nav-btn.nav-btn--locked {
+    background: linear-gradient(100deg, #6b5570 0%, #57445f 55%, #6b5570 100%);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.72);
+    text-shadow: none;
+    cursor: not-allowed;
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.06),
+        0 8px 24px rgba(0, 0, 0, 0.35);
+    animation: none;
+    filter: none;
+}
+
+.nav-btn[disabled]::after,
+.nav-btn.nav-btn--locked::after {
+    display: none;
+}
+
+.nav-btn[disabled]:hover,
+.nav-btn.nav-btn--locked:hover {
+    transform: none;
+    filter: none;
+}
+
+/* =========================
+   RESPONSIVE — HP
+   ========================= */
+
+@media (max-width: 560px) {
+    .nav-btn {
+        /* Tidak full-width: ada margin kiri-kanan agar terlihat proporsional */
+        width: min(320px, 100%);
+        min-height: 50px;
+        padding: 11px 20px;
+        gap: 8px;
+        font-size: clamp(1rem, 4.8vw, 1.2rem);
+        letter-spacing: 0.2px;
+        box-shadow:
+            0 0 0 3px rgba(255, 143, 185, 0.18),
+            0 8px 22px rgba(255, 90, 145, 0.36),
+            inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    }
+
+    .nav-btn__heart {
+        width: 13px;
+        height: 13px;
+    }
+}
+
+/* HP sangat kecil */
+@media (max-width: 380px) {
+    .nav-btn {
+        width: 100%;
+        min-height: 46px;
+        padding: 10px 14px;
+        gap: 7px;
+        font-size: 0.95rem;
+        letter-spacing: 0;
+    }
+
+    .nav-btn__heart {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Landscape pendek: hemat tinggi */
+@media (max-height: 500px) and (orientation: landscape) {
+    .nav-btn {
+        min-height: 44px;
+        padding: 9px 22px;
+        font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+    }
+
+    .nav-btn__heart {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-btn {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .nav-btn::after {
+        display: none;
+    }
+
+    .nav-btn:hover,
+    .nav-btn:active {
+        transform: none;
+    }
+}

@@ -1,0 +1,512 @@
+.page2-body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 40%, #2d1b4e 70%, #1f0a30 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.gift-container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 500px;
+    width: 100%;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+.gift-eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    color: #ffb3c6;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.gift-wrapper {
+    margin: 40px auto 30px;
+    position: relative;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gift-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.gift-svg {
+    filter: drop-shadow(0 0 30px rgba(255, 107, 157, 0.5));
+    animation: giftFloat 3s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes giftFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.gift-light {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 220, 180, 0.9) 0%, rgba(255, 150, 180, 0.5) 40%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.gift-wrapper.opened .gift-light {
+    animation: lightBurst 1.5s ease-out forwards;
+}
+
+@keyframes lightBurst {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    30% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+.gift-wrapper.opened .gift-svg {
+    animation: giftOpen 1.5s ease-out forwards;
+}
+
+.gift-wrapper.opened .gift-lid {
+    transform-origin: 100px 70px;
+    animation: lidFly 1.5s ease-out forwards;
+}
+
+@keyframes giftOpen {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.2) rotate(-5deg); }
+    60% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1.3); opacity: 0.8; }
+}
+
+@keyframes lidFly {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100px) rotate(-30deg); opacity: 0; }
+}
+
+.gift-hint {
+    font-size: 1rem;
+    color: #d4a5a5;
+    font-weight: 300;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    animation: hintPulse 2s ease-in-out infinite;
+}
+
+.sparkle-icon {
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+}
+
+@keyframes hintPulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Hint disembunyikan saat gift dibuka.
+   Catatan: tidak memakai selector "+" karena ada #fireworks di antaranya. */
+.gift-wrapper.opened ~ .gift-hint,
+.page2-body.celebrating .gift-hint {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* =========================
+   PETASAN (FIREWORKS)
+   ========================= */
+
+.fireworks {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+}
+
+/* Kilatan cahaya di pusat ledakan */
+.firework-flash {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    margin: -130px 0 0 -130px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 214, 170, 0.75) 25%,
+        rgba(255, 140, 190, 0.35) 50%,
+        transparent 72%
+    );
+    animation: flashOut 0.55s ease-out forwards;
+}
+
+@keyframes flashOut {
+    0%   { transform: scale(0.15); opacity: 0; }
+    22%  { transform: scale(0.85); opacity: 1; }
+    100% { transform: scale(1.9);  opacity: 0; }
+}
+
+/* Cincin kejut (shockwave) */
+.firework-ring {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    margin: -60px 0 0 -60px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 200, 220, 0.85);
+    box-shadow: 0 0 24px rgba(255, 107, 157, 0.7);
+    animation: ringOut 0.85s cubic-bezier(0.15, 0.7, 0.3, 1) forwards;
+}
+
+@keyframes ringOut {
+    0%   { transform: scale(0.2); opacity: 0.95; border-width: 5px; }
+    100% { transform: scale(3.4); opacity: 0;    border-width: 1px; }
+}
+
+/* Percikan / spark */
+.spark-burst {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    margin: -4.5px 0 0 -4.5px;
+    border-radius: 50%;
+    background: var(--c, #ffd700);
+    box-shadow:
+        0 0 10px var(--c, #ffd700),
+        0 0 22px var(--c, #ffd700),
+        0 0 34px rgba(255, 255, 255, 0.55);
+    will-change: transform, opacity;
+    animation: sparkFly 1.2s cubic-bezier(0.12, 0.72, 0.28, 1) forwards;
+}
+
+/* Varian ekor memanjang agar terasa seperti kembang api */
+.spark-burst--trail {
+    width: 6px;
+    height: 20px;
+    margin: -10px 0 0 -3px;
+    border-radius: 50%;
+}
+
+@keyframes sparkFly {
+    0%   { transform: translate(0, 0) scale(1.2) rotate(0deg); opacity: 1; }
+    65%  { opacity: 1; }
+    100% { transform: translate(var(--dx, 0px), var(--dy, 0px)) scale(0.15) rotate(180deg); opacity: 0; }
+}
+
+/* Gift hilang total saat perayaan dimulai */
+.page2-body.celebrating .gift-wrapper {
+    transform: scale(0.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page2-body.celebrating .gift-svg {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* Ornamen & eyebrow ikut memudar agar angka 17 bersih */
+.page2-body.celebrating .ornament {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* =========================
+   ANGKA 17
+   ========================= */
+
+.age-reveal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 6;
+    transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.age-reveal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.age-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(9rem, 46vw, 20rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+    text-shadow:
+        0 0 24px rgba(255, 255, 255, 0.55),
+        0 0 50px rgba(255, 107, 157, 0.95),
+        0 0 100px rgba(255, 64, 129, 0.70),
+        0 0 170px rgba(255, 215, 0, 0.40);
+}
+
+.age-digit {
+    display: inline-block;
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: agePop 0.75s cubic-bezier(0.2, 1.35, 0.4, 1) forwards;
+}
+
+.age-digit:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+@keyframes agePop {
+    0%   { opacity: 0; transform: scale(2.6) rotate(-14deg); filter: blur(14px); }
+    62%  { opacity: 1; transform: scale(0.93) rotate(2deg);  filter: blur(0); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.age-caption {
+    margin: 22px 0 0;
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(1.35rem, 5vw, 2.2rem);
+    font-weight: 400;
+    color: #ffb3c6;
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+    opacity: 0;
+    animation: ageCaptionIn 0.8s ease 0.62s forwards;
+}
+
+@keyframes ageCaptionIn {
+    0%   { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+    .page2-body {
+        overflow-y: auto;
+        display: block;
+    }
+
+    .gift-container {
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 28px 16px calc(84px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .gift-wrapper {
+        width: 170px;
+        height: 170px;
+        margin: 26px auto 22px;
+    }
+
+    .gift-svg {
+        width: 145px;
+        height: 145px;
+    }
+
+    /* Eyebrow text: izinkan wrap, jangan nowrap */
+    .gift-eyebrow {
+        font-size: 0.6rem;
+        letter-spacing: 1.6px;
+        white-space: normal;
+        line-height: 1.7;
+        text-align: center;
+    }
+
+    .ornament {
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 14px;
+        row-gap: 4px;
+    }
+
+    .ornament-line {
+        width: 26px;
+        flex-shrink: 1;
+    }
+
+    .ornament-dot {
+        flex-shrink: 0;
+    }
+
+    .gift-hint {
+        font-size: 0.85rem;
+        text-align: center;
+        line-height: 1.6;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .music-player {
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+        right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+        width: 52px !important;
+        height: 52px !important;
+    }
+
+    .play-btn {
+        width: 52px;
+        height: 52px;
+    }
+
+    .play-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+/* HP sangat kecil */
+@media (max-width: 380px) {
+    .gift-container {
+        padding: 20px 12px calc(78px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .gift-wrapper {
+        width: 150px;
+        height: 150px;
+        margin: 20px auto 18px;
+    }
+
+    .gift-svg {
+        width: 128px;
+        height: 128px;
+    }
+
+    .gift-eyebrow {
+        font-size: 0.55rem;
+        letter-spacing: 1.2px;
+    }
+
+    .gift-hint {
+        font-size: 0.78rem;
+    }
+
+    .age-number {
+        font-size: clamp(7rem, 44vw, 12rem);
+    }
+
+    .age-caption {
+        font-size: 1.15rem;
+    }
+}
+
+/* Landscape pendek */
+@media (max-height: 500px) and (orientation: landscape) {
+    .page2-body {
+        overflow-y: auto;
+        display: block;
+    }
+
+    .gift-container {
+        min-height: auto;
+        padding: 18px 20px calc(70px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .gift-wrapper {
+        width: 130px;
+        height: 130px;
+        margin: 12px auto 12px;
+    }
+
+    .gift-svg {
+        width: 112px;
+        height: 112px;
+    }
+
+    .ornament {
+        margin-bottom: 8px;
+    }
+
+    .age-number {
+        font-size: clamp(4rem, 30vh, 9rem);
+    }
+
+    .age-caption {
+        font-size: 1.05rem;
+        margin-top: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gift-svg,
+    .gift-hint,
+    .gift-light,
+    .gift-lid,
+    .bg-heart,
+    .heart,
+    .bubble,
+    .star-particle {
+        animation: none !important;
+    }
+
+    .gift-container {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+    }
+
+    /* Tanpa petasan beranimasi */
+    .spark-burst,
+    .firework-flash,
+    .firework-ring {
+        display: none !important;
+    }
+
+    /* Angka 17 langsung tampil */
+    .age-digit,
+    .age-caption {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}
+
+.music-player {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    width: 65px !important;
+    height: 65px !important;
+    z-index: 10 !important;
+    animation: none !important;
+    transform: none !important;
+}

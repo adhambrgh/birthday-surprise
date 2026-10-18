@@ -1,0 +1,393 @@
+.page5-body {
+    font-family: 'Lato', sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(177, 117, 255, 0.15), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(255, 160, 220, 0.12), transparent 25%),
+        linear-gradient(135deg, #120b1c 0%, #21142e 40%, #2d173d 70%, #140c20 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    color: white;
+}
+
+.page5-body #bg-hearts { z-index: 0 !important; }
+
+.page5-body .stars {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.page5-body .star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+    animation: twinkle 2.8s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.15; transform: scale(0.7); }
+    50% { opacity: 1; transform: scale(1.4); }
+}
+
+.page5-body .page {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1280px;
+    min-height: 100vh;
+    padding: 48px 24px 80px;
+    animation: fadeInUp 1.8s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 62px);
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: #fff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.18), 0 0 30px rgba(214, 146, 255, 0.2);
+    margin-bottom: 8px;
+}
+
+.header p {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.gallery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    align-items: stretch;
+}
+
+.memory {
+    position: relative;
+    background: #fdfbf7;
+    padding: 8px 8px 28px;
+    border-radius: 3px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(.2, .8, .2, 1), box-shadow 0.35s ease;
+    animation: appear 0.6s ease both;
+    overflow: hidden;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.memory:nth-child(1) { animation-delay: 0.05s; transform: rotate(-3.5deg); }
+.memory:nth-child(2) { animation-delay: 0.1s; transform: rotate(2deg); }
+.memory:nth-child(3) { animation-delay: 0.15s; transform: rotate(-1.5deg); }
+.memory:nth-child(4) { animation-delay: 0.2s; transform: rotate(3deg); }
+.memory:nth-child(5) { animation-delay: 0.25s; transform: rotate(2.5deg); }
+.memory:nth-child(6) { animation-delay: 0.3s; transform: rotate(-3deg); }
+.memory:nth-child(7) { animation-delay: 0.35s; transform: rotate(1.5deg); }
+.memory:nth-child(8) { animation-delay: 0.4s; transform: rotate(-2.5deg); }
+
+.memory img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: saturate(0.92);
+    transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+.memory:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.38), 0 0 20px rgba(255, 107, 157, 0.12);
+    z-index: 5;
+}
+
+.memory:hover img {
+    filter: saturate(1);
+}
+
+.caption {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 0;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-size: 13px;
+    color: #6b5a65;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 3, 12, 0.88);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 999;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: min(900px, 92vw);
+    max-height: 85vh;
+    object-fit: contain;
+    border: 10px solid #f8f5ef;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.35s ease;
+}
+
+.lightbox.active img {
+    transform: scale(1);
+}
+
+.close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.close:hover {
+    background: rgba(255, 107, 157, 0.3);
+    border-color: rgba(255, 107, 157, 0.6);
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.32);
+    letter-spacing: 1.5px;
+}
+
+.page5-body .ambient-glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(177, 117, 255, 0.12) 0%, rgba(255, 160, 220, 0.06) 40%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    animation: ambientPulse 5s ease-in-out infinite;
+}
+
+@keyframes ambientPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+}
+
+/* Next button
+   Gaya visual tombol ada di assets/css/next-button.css (.nav-btn).
+   Di sini hanya mengatur posisi khusus halaman ini. */
+.next-btn {
+    margin: 36px auto 10px auto;
+    animation: fadeInUp 1.8s ease-out 2s both;
+}
+
+@keyframes heartBeatIcon {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.4); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.25); }
+    60% { transform: scale(1); }
+}
+
+.music-player {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    width: 65px !important;
+    height: 65px !important;
+    z-index: 10 !important;
+}
+
+.play-btn {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.play-btn:hover {
+    background: rgba(255, 64, 129, 0.3);
+    border-color: rgba(255, 64, 129, 0.6);
+    transform: scale(1.1);
+}
+
+@keyframes appear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.page5-body::-webkit-scrollbar { width: 6px; }
+.page5-body::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); }
+.page5-body::-webkit-scrollbar-thumb { background: linear-gradient(#ff6b9d, #ffb3c6); border-radius: 3px; }
+
+@media (max-width: 1100px) {
+    .gallery { gap: 14px; }
+}
+
+@media (max-width: 900px) {
+    .gallery { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+}
+
+@media (max-width: 640px) {
+    .page5-body .page {
+        padding: 32px 14px calc(80px + env(safe-area-inset-bottom, 0px));
+        min-height: auto;
+    }
+
+    .header { margin-bottom: 24px; }
+
+    .header h1 {
+        font-size: clamp(28px, 9vw, 40px);
+        letter-spacing: -0.5px;
+    }
+
+    .header p {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+    .memory { padding: 6px 6px 24px; border-radius: 3px; }
+    .memory img { aspect-ratio: 3 / 4; }
+    .memory:hover { transform: none; }
+
+    .caption { font-size: 10.5px; height: 24px; }
+
+    .lightbox { padding: 12px; }
+    .lightbox img {
+        max-width: 100%;
+        max-height: 82vh;
+        border-width: 6px;
+    }
+
+    .close {
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+        top: calc(12px + env(safe-area-inset-top, 0px));
+        right: 12px;
+    }
+
+    .footer { margin-top: 28px; font-size: 10px; }
+
+    /* Ukuran tombol diatur next-button.css */
+    .next-btn {
+        margin: 28px auto 0 auto;
+    }
+
+    .music-player {
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+        right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+        width: 52px !important;
+        height: 52px !important;
+    }
+
+    .play-btn { width: 52px; height: 52px; }
+    .play-btn svg { width: 22px; height: 22px; }
+}
+
+/* HP sangat kecil: 1 kolom agar foto tetap besar */
+@media (max-width: 360px) {
+    .page5-body .page {
+        padding: 24px 10px calc(74px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .gallery { grid-template-columns: 1fr; gap: 12px; }
+    .memory img { aspect-ratio: 4 / 5; }
+    .caption { font-size: 11px; }
+}
+
+/* Landscape pendek */
+@media (max-height: 500px) and (orientation: landscape) {
+    .page5-body .page {
+        padding: 18px 14px calc(62px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .header { margin-bottom: 16px; }
+    .header h1 { font-size: 26px; }
+    .gallery { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .footer { margin-top: 18px; }
+    .next-btn { margin-top: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page5-body .star,
+    .memory,
+    .ambient-glow,
+    .bg-heart {
+        animation: none !important;
+    }
+
+    .page5-body .page {
+        animation-duration: 0.01ms !important;
+    }
+
+    .memory {
+        opacity: 1 !important;
+    }
+}

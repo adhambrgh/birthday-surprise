@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Ada Sesuatu Untukmu</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/page2.css" />
+  </head>
+  <body class="page2-body">
+    <script src="assets/js/page-transition.js"></script>
+    <div class="particles" id="particles2"></div>
+    <div class="bubbles" id="bubbles2"></div>
+    <div class="stars" id="stars2"></div>
+    <div class="ambient-glow"></div>
+
+    <main class="container gift-container">
+      <div class="ornament">
+        <span class="ornament-dot">✦</span>
+        <span class="ornament-line"></span>
+        <span class="gift-eyebrow">ADA SESUATU UNTUK PRINCESSKU</span>
+        <span class="ornament-line"></span>
+        <span class="ornament-dot">✦</span>
+      </div>
+
+      <div class="gift-wrapper" id="giftWrapper">
+        <div class="gift-light" id="giftLight"></div>
+        <svg
+          class="gift-svg"
+          id="giftSvg"
+          viewBox="0 0 200 200"
+          width="180"
+          height="180"
+        >
+          <defs>
+            <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color: #2d1b4e; stop-opacity: 1" />
+              <stop
+                offset="100%"
+                style="stop-color: #1a0a2e; stop-opacity: 1"
+              />
+            </linearGradient>
+            <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #ffb3c6; stop-opacity: 1" />
+              <stop offset="50%" style="stop-color: #ff6b9d; stop-opacity: 1" />
+              <stop
+                offset="100%"
+                style="stop-color: #ffb3c6; stop-opacity: 1"
+              />
+            </linearGradient>
+          </defs>
+          <g class="gift-lid" id="giftLid">
+            <rect
+              x="55"
+              y="60"
+              width="90"
+              height="20"
+              rx="4"
+              fill="url(#boxGrad)"
+              stroke="#ffb3c6"
+              stroke-width="2"
+            />
+            <ellipse
+              cx="85"
+              cy="52"
+              rx="18"
+              ry="12"
+              fill="none"
+              stroke="#ffb3c6"
+              stroke-width="3"
+            />
+            <ellipse
+              cx="115"
+              cy="52"
+              rx="18"
+              ry="12"
+              fill="none"
+              stroke="#ffb3c6"
+              stroke-width="3"
+            />
+            <circle cx="100" cy="60" r="5" fill="#ff6b9d" />
+            <rect
+              x="92"
+              y="60"
+              width="16"
+              height="20"
+              fill="url(#ribbonGrad)"
+            />
+          </g>
+          <g class="gift-body">
+            <rect
+              x="60"
+              y="80"
+              width="80"
+              height="70"
+              rx="4"
+              fill="url(#boxGrad)"
+              stroke="#ffb3c6"
+              stroke-width="2"
+            />
+            <rect
+              x="92"
+              y="80"
+              width="16"
+              height="70"
+              fill="url(#ribbonGrad)"
+              opacity="0.8"
+            />
+            <line
+              x1="60"
+              y="115"
+              x2="140"
+              y="115"
+              stroke="#ffb3c6"
+              stroke-width="1.5"
+              opacity="0.5"
+            />
+            <line
+              x1="100"
+              y="80"
+              x2="100"
+              y="150"
+              stroke="#ffb3c6"
+              stroke-width="0"
+              opacity="0"
+            />
+          </g>
+        </svg>
+      </div>
+
+      <p class="gift-hint">
+        <svg
+          class="sparkle-icon"
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+          fill="#ffd700"
+        >
+          <path
+            d="M12 2c.5 5 3 7 8 8-5 .8-7.5 3-8 8-.5-5-3-7-8-8 5-.8 7.5-3 8-8z"
+          />
+        </svg>
+        Klik untukk membuka kejutannyaaa
+        <svg
+          class="sparkle-icon"
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+          fill="#ffd700"
+        >
+          <path
+            d="M12 2c.5 5 3 7 8 8-5 .8-7.5 3-8 8-.5-5-3-7-8-8 5-.8 7.5-3 8-8z"
+          />
+        </svg>
+      </p>
+
+      <!-- Efek petasan (diisi oleh JS) -->
+      <div class="fireworks" id="fireworks" aria-hidden="true"></div>
+
+      <!-- Angka 17 -->
+      <div class="age-reveal" id="ageReveal" aria-hidden="true">
+        <div class="age-number">
+          <span class="age-digit">1</span>
+          <span class="age-digit">7</span>
+        </div>
+        <p class="age-caption">Happy 17th Birthday Sayang</p>
+      </div>
+    </main>
+
+    <script src="assets/js/page2.js"></script>
+    <script src="assets/js/heart-bg.js"></script>
+  </body>
+</html>

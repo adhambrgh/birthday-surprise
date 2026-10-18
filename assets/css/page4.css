@@ -1,0 +1,499 @@
+.page4-body {
+    font-family: 'Lato', sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(190,120,255,0.18), transparent 30%),
+        radial-gradient(circle at 50% 80%, rgba(120,60,180,0.20), transparent 35%),
+        linear-gradient(135deg, #13091d, #24102f, #351541, #180b25);
+    background-attachment: fixed;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    color: white;
+}
+
+.page4-body .container {
+    width: min(1400px, 96vw);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 20px 0;
+    animation: fadeInUp 1.8s ease-out;
+}
+
+.page4-body .stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Stars */
+.page4-body .star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255,255,255,0.8);
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.7); }
+    50% { opacity: 1; transform: scale(1.4); }
+}
+
+/* Title */
+.title-deco {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.15s forwards;
+}
+
+.d-icon {
+    display: inline-flex;
+    filter: drop-shadow(0 0 8px currentColor);
+    animation: iconFloat 2.6s ease-in-out infinite;
+}
+
+.d-icon:nth-child(2) { animation-delay: 0.3s; }
+.d-icon:nth-child(3) { animation-delay: 0.6s; }
+.d-icon:nth-child(4) { animation-delay: 0.9s; }
+.d-icon:nth-child(5) { animation-delay: 1.2s; }
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-7px) scale(1.15); }
+}
+
+.page4-body .title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 30px rgba(214,150,255,0.3), 0 0 60px rgba(255,107,157,0.25);
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+/* Card */
+.card {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 36px 50px;
+    background: rgba(35, 20, 42, 0.66);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05), 0 0 40px rgba(255,107,157,0.12);
+    text-align: left;
+    opacity: 0;
+    animation: fadeInUp 1.8s ease-out 0.3s both;
+    position: relative;
+    overflow: hidden;
+    width: 96vw;
+    left: 0;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b9d, #ffd700, #7ed6ff, #a8e6a1, #ff6b9d);
+    background-size: 200% 100%;
+    animation: rainbowSlide 5s linear infinite;
+}
+
+@keyframes rainbowSlide {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Corner icons */
+.corner-icon {
+    position: absolute;
+    opacity: 0;
+    animation: cornerPop 0.6s ease-out forwards, cornerFloat 3s ease-in-out infinite;
+}
+
+.corner-tl { top: 12px; left: 14px; animation-delay: 0.5s; }
+.corner-tr { top: 12px; right: 14px; animation-delay: 0.6s; }
+.corner-bl { bottom: 12px; left: 14px; animation-delay: 0.7s; }
+.corner-br { bottom: 12px; right: 14px; animation-delay: 0.8s; }
+
+@keyframes cornerPop {
+    0% { opacity: 0; transform: scale(0); }
+    70% { opacity: 1; transform: scale(1.3); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cornerFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-4px) scale(1.1); }
+}
+
+/* Small title */
+.small-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.cake-icon {
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(255, 107, 157, 0.6));
+    animation: cakeWobble 2.5s ease-in-out infinite;
+}
+
+@keyframes cakeWobble {
+    0%, 100% { transform: rotate(-4deg) scale(1); }
+    50% { transform: rotate(4deg) scale(1.12); }
+}
+
+.message {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.88);
+    height: 42vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.message::-webkit-scrollbar {
+    width: 5px;
+}
+
+.message::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+}
+
+.message::-webkit-scrollbar-thumb {
+    background: linear-gradient(#ff6b9d, #ffb3c6);
+    border-radius: 3px;
+}
+
+.message::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(#ff4081, #ff6b9d);
+}
+
+.paragraph {
+    margin-bottom: 18px;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 30px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    opacity: 0;
+    animation: fadeIn 1s ease 8s forwards;
+}
+
+.footer svg {
+    animation: heartBeatIcon 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeatIcon {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.4); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.25); }
+    60% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Confetti */
+.confetti-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    top: -20px;
+    opacity: 0;
+    animation: confettiFall linear infinite;
+}
+
+@keyframes confettiFall {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(var(--sway, 40px), 110vh, 0) rotate(720deg);
+    }
+}
+
+/* Next button
+   Gaya visual tombol ada di assets/css/next-button.css (.nav-btn).
+   Di sini hanya mengatur posisi khusus halaman ini. */
+.next-btn {
+    margin: 30px 0 20px 0;
+    animation: fadeInUp 1.8s ease-out 2s both;
+}
+
+/* Music player */
+.music-player {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    width: 65px !important;
+    height: 65px !important;
+    z-index: 10 !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+.play-btn {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.play-btn:hover {
+    background: rgba(255, 64, 129, 0.3);
+    border-color: rgba(255, 64, 129, 0.6);
+    box-shadow: 0 4px 25px rgba(255, 64, 129, 0.4);
+    transform: scale(1.1);
+}
+
+.play-icon, .pause-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================
+   RESPONSIVE TABLET
+   ========================= */
+
+@media (max-width: 1024px) {
+    .page4-body {
+        overflow-y: auto;
+        align-items: flex-start;
+    }
+
+    .page4-body .container {
+        width: 100%;
+        padding: 28px 16px calc(90px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+        left: 0;
+        margin: 0;
+        padding: 28px 30px;
+    }
+
+    /* Surat dibiarkan mengalir, bukan kotak scroll kecil */
+    .message {
+        height: auto;
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+    }
+}
+
+/* =========================
+   RESPONSIVE HP
+   ========================= */
+
+@media (max-width: 640px) {
+    .page4-body .container {
+        padding: 20px 14px calc(84px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .card {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+    .message {
+        height: auto;
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+        font-size: 13.5px;
+        line-height: 1.8;
+    }
+
+    .paragraph {
+        margin-bottom: 14px;
+    }
+
+    .small-title {
+        font-size: 13px;
+        gap: 8px;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .cake-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .page4-body .title {
+        font-size: clamp(28px, 9vw, 42px);
+        margin-bottom: 14px;
+    }
+
+    .title-deco {
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+
+    .d-icon svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .corner-icon svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    .corner-tl { top: 8px; left: 8px; }
+    .corner-tr { top: 8px; right: 8px; }
+    .corner-bl { bottom: 8px; left: 8px; }
+    .corner-br { bottom: 8px; right: 8px; }
+
+    .footer {
+        margin-top: 20px;
+        font-size: 12px;
+    }
+
+    /* Ukuran tombol diatur next-button.css */
+    .next-btn {
+        margin: 20px 0 0 0;
+    }
+
+    .music-player {
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+        right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+        width: 52px !important;
+        height: 52px !important;
+    }
+
+    .play-btn {
+        width: 52px;
+        height: 52px;
+    }
+
+    .play-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+/* HP sangat kecil */
+@media (max-width: 380px) {
+    .page4-body .container {
+        padding: 16px 10px calc(78px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .card {
+        padding: 18px 14px;
+    }
+
+    .message {
+        font-size: 13px;
+        line-height: 1.75;
+    }
+}
+
+/* Landscape pendek */
+@media (max-height: 500px) and (orientation: landscape) {
+    .page4-body .container {
+        padding: 14px 16px calc(66px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .card {
+        padding: 18px 22px;
+    }
+
+    .page4-body .title {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+}
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .star,
+    .d-icon,
+    .corner-icon,
+    .cake-icon,
+    .confetti,
+    .footer svg,
+    .card::before,
+    .bg-heart {
+        animation: none !important;
+    }
+
+    .card,
+    .page4-body .title,
+    .title-deco,
+    .footer {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        opacity: 1 !important;
+    }
+}

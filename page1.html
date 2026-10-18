@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Menghitung Hari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/next-button.css">
+</head>
+<body>
+    <script src="assets/js/page-transition.js"></script>
+    <div class="particles" id="particles"></div>
+    <div class="bubbles" id="bubbles"></div>
+    <div class="stars" id="stars"></div>
+
+    <div class="ambient-glow"></div>
+
+    <main class="container">
+        <div class="ornament">
+            <span class="ornament-dot">✦</span>
+            <span class="ornament-line"></span>
+            <span class="ornament-dot">✦</span>
+        </div>
+
+        <div class="content">
+            <h1 class="title">MENGHITUNG HARI</h1>
+            <p class="subtitle">Ur Special Day is Coming</p>
+            <p class="love-text">19/10/1009 - adalah hari dimana bidadariku dilahirkan</p>
+        </div>
+
+        <div class="crown-icon">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="#ffb3c6">
+                <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5z"/>
+                <rect x="5" y="18" width="14" height="2" rx="1"/>
+            </svg>
+        </div>
+
+        <div class="countdown">
+            <div class="countdown-card">
+                <span class="countdown-number" id="hari">00</span>
+                <span class="countdown-label">HARI</span>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-card">
+                <span class="countdown-number" id="jam">00</span>
+                <span class="countdown-label">JAM</span>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-card">
+                <span class="countdown-number" id="menit">00</span>
+                <span class="countdown-label">MENIT</span>
+            </div>
+            <div class="countdown-separator">:</div>
+            <div class="countdown-card">
+                <span class="countdown-number" id="detik">00</span>
+                <span class="countdown-label">DETIK</span>
+            </div>
+        </div>
+
+        <div class="bottom-text">
+            <p class="remaining" id="remaining">Tersisa 00:07 lagi</p>
+            <p class="soon">Beberapa detik lagi...</p>
+        </div>
+
+        <button class="cta-btn nav-btn locked" id="ctaBtn">
+            <span class="nav-btn__heart" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="#ffffff">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </span>
+            <span class="nav-btn__label">Tunggu Sampai Waktunya</span>
+            <span class="nav-btn__heart" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="#ffffff">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </span>
+        </button>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/heart-bg.js"></script>
+</body>
+</html>

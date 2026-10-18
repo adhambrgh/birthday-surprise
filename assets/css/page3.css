@@ -1,0 +1,640 @@
+.page3-body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 30%, #2d1b4e 60%, #1f0a30 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+.letter-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 14px 0 6px 0;
+    max-width: none;
+    width: 100%;
+    animation: fadeInUp 1.8s ease-out;
+}
+
+.ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    animation: fadeInUp 1.8s ease-out 0.2s both;
+}
+
+.ornament-dot {
+    color: #ff6b9d;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px rgba(255, 107, 157, 0.8);
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.15); }
+}
+
+.ornament-line {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+    animation: lineGlow 3s ease-in-out infinite;
+}
+
+@keyframes lineGlow {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+.eyebrow-text {
+    font-size: 1.05rem;
+    letter-spacing: 6px;
+    color: #ffb3c6;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    animation: fadeInUp 1.8s ease-out 0.3s both;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 3px;
+    text-shadow: 0 0 40px rgba(255, 64, 129, 0.6), 0 0 80px rgba(255, 64, 129, 0.3);
+    margin-bottom: 8px;
+    animation: titleGlow 3s ease-in-out infinite, fadeInUp 1.8s ease-out 0.4s both;
+    line-height: 1.15;
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 0 0 40px rgba(255, 64, 129, 0.6), 0 0 80px rgba(255, 64, 129, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 50px rgba(255, 64, 129, 0.9), 0 0 100px rgba(255, 64, 129, 0.5);
+    }
+}
+
+.special-day {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    color: #ffb3c6;
+    margin-bottom: 6px;
+    animation: fadeInUp 1.8s ease-out 0.6s both, heartBeat 2s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(255, 179, 198, 0.3);
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.1); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    56% { transform: scale(1); }
+}
+
+.created-with {
+    font-size: 1.35rem;
+    color: #d4a5a5;
+    font-weight: 300;
+    font-style: italic;
+    animation: fadeInUp 1.8s ease-out 0.8s both;
+    margin-bottom: 10px;
+}
+
+/* Polaroid gallery */
+.polaroid-gallery {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: none;
+    margin: 8px 0;
+    padding: 0 3%;
+    perspective: 1500px;
+    animation: fadeInUp 1.8s ease-out 1s both;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.letter-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 0 auto;
+    padding: 0 15px;
+}
+
+.polaroid-left, .polaroid-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.polaroid-left {
+    align-self: flex-start;
+    gap: 10px;
+}
+
+.polaroid-right {
+    align-self: flex-end;
+    gap: 10px;
+}
+
+
+.polaroid {
+    width: 205px;
+    height: 265px;
+    background: #f8f3ee;
+    border-radius: 4px;
+    padding: 12px 12px 58px 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3),
+        0 0 50px rgba(255, 64, 129, 0.18);
+    transform: rotate(var(--rot, 0deg)) translateY(var(--y, 0px));
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    position: relative;
+    animation: polaroidDrop 1s ease-out backwards;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Caption selalu tampil di perangkat sentuh */
+@media (hover: none) {
+    .polaroid-caption {
+        opacity: 1;
+    }
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) translateY(-10px) scale(1.04) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35),
+        0 0 60px rgba(255, 64, 129, 0.3);
+    z-index: 10;
+}
+
+.polaroid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+    background: #e8e0d8;
+    position: relative;
+}
+
+.polaroid-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.polaroid-caption {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #777;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.polaroid:hover .polaroid-caption {
+    opacity: 1;
+}
+
+@keyframes polaroidDrop {
+    0% {
+        opacity: 0;
+        transform: rotate(var(--rot, 0deg)) translateY(80px) scale(0.7);
+    }
+    60% {
+        opacity: 1;
+        transform: rotate(calc(var(--rot, 0deg) * 0.2)) translateY(-8px) scale(1.03);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(var(--rot, 0deg)) translateY(0) scale(1);
+    }
+}
+
+/* Animasi floating polaroid */
+.polaroid:nth-child(1) { animation-delay: 1.0s; }
+.polaroid:nth-child(2) { animation-delay: 1.15s; }
+.polaroid:nth-child(3) { animation-delay: 1.3s; }
+.polaroid:nth-child(4) { animation-delay: 1.45s; }
+.polaroid:nth-child(5) { animation-delay: 1.6s; }
+.polaroid:nth-child(6) { animation-delay: 1.75s; }
+
+@keyframes polaroidDropLeft3 {
+    0% { opacity: 0; transform: rotate(1deg) translateY(80px) scale(0.7) translateX(-25px); }
+    60% { opacity: 1; transform: rotate(calc(1deg * 0.2)) translateY(-8px) scale(1.03) translateX(-25px); }
+    100% { opacity: 1; transform: rotate(1deg) translateY(0) scale(1) translateX(-25px); }
+}
+
+@keyframes polaroidDropRight3 {
+    0% { opacity: 0; transform: rotate(5deg) translateY(80px) scale(0.7) translateX(25px); }
+    60% { opacity: 1; transform: rotate(calc(5deg * 0.2)) translateY(-8px) scale(1.03) translateX(25px); }
+    100% { opacity: 1; transform: rotate(5deg) translateY(0) scale(1) translateX(25px); }
+}
+
+.polaroid-left .polaroid:nth-child(3) { animation-name: polaroidDropLeft3; }
+.polaroid-right .polaroid:nth-child(3) { animation-name: polaroidDropRight3; }
+
+/* Sparkle decorations */
+.sparkle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    animation: sparkleFloat 4s ease-in-out infinite;
+    opacity: 0;
+}
+
+@keyframes sparkleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0) rotate(0deg);
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-120px) scale(1.5) rotate(360deg);
+    }
+}
+
+/* Next page button
+   Gaya visual tombol ada di assets/css/next-button.css (.nav-btn).
+   Di sini hanya mengatur posisi khusus halaman ini. */
+.next-btn {
+    margin: 25px 0 70px 0;
+    animation: fadeInUp 1.8s ease-out 2s both;
+}
+
+/* Heart raining effect */
+.heart-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.falling-heart {
+    position: absolute;
+    bottom: -50px;
+    opacity: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ff6b9d' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center / contain;
+    animation: heartFall linear infinite;
+}
+
+@keyframes heartFall {
+    0% {
+        opacity: 0;
+        transform: translateX(0) rotate(0deg) scale(1);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(var(--drift, 30px)) rotate(360deg) scale(0.3);
+    }
+}
+
+/* Glow overlay */
+.ambient-glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 64, 129, 0.12) 0%, rgba(180, 80, 200, 0.06) 40%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    animation: ambientPulse 5s ease-in-out infinite;
+}
+
+@keyframes ambientPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+}
+
+/* Music player */
+.music-player {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    width: 65px !important;
+    height: 65px !important;
+    z-index: 10 !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+.play-btn {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.play-btn:hover {
+    background: rgba(255, 64, 129, 0.3);
+    border-color: rgba(255, 64, 129, 0.6);
+    box-shadow: 0 4px 25px rgba(255, 64, 129, 0.4);
+    transform: scale(1.1);
+}
+
+.play-icon, .pause-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive */
+@keyframes sparklePop {
+    0% { opacity: 1; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.5); background: #ffd700; }
+    100% { opacity: 0; transform: scale(2); }
+}
+
+@media (max-width: 768px) {
+    .page3-body {
+        overflow-y: auto;
+    }
+
+    .letter-container {
+        min-height: auto;
+        padding: 24px 14px calc(80px + env(safe-area-inset-bottom, 0px));
+        justify-content: flex-start;
+        animation: none;
+    }
+
+    /* Susun ulang: teks dulu, lalu galeri 3 kolom */
+    /* Width eksplisit, jangan biarkan konten auto melebihi viewport */
+    .polaroid-gallery {
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .letter-text {
+        order: -1;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 4px;
+        margin-bottom: 4px;
+        box-sizing: border-box;
+    }
+
+    .polaroid-left,
+    .polaroid-right {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        width: 100%;
+        max-width: 100%;
+        align-self: stretch;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    /* Reset rotasi & offset agar rapi dalam grid */
+    .polaroid-left .polaroid,
+    .polaroid-right .polaroid,
+    .polaroid-left .polaroid:nth-child(3),
+    .polaroid-right .polaroid:nth-child(3) {
+        transform: none !important;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        height: auto;
+        padding: 5px 5px 26px 5px;
+        animation-name: fadeInUp;
+        margin: 0;
+    }
+
+    .polaroid:hover,
+    .polaroid:active {
+        transform: scale(1.03) !important;
+    }
+
+    .polaroid-image {
+        aspect-ratio: 4 / 5;
+        height: auto;
+    }
+
+    .polaroid-caption {
+        bottom: 6px;
+        font-size: 0.58rem;
+        letter-spacing: 0.5px;
+    }
+
+    .ornament {
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .ornament-line {
+        width: 30px;
+        flex-shrink: 1;
+    }
+
+    .ornament-dot {
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+
+    .main-title {
+        font-size: clamp(1.5rem, 7.5vw, 2.1rem);
+        letter-spacing: 1.5px;
+        line-height: 1.2;
+    }
+
+    .special-day {
+        font-size: clamp(1.1rem, 5vw, 1.45rem);
+    }
+
+    .created-with {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+
+    /* Ukuran & padding tombol diatur next-button.css */
+    .next-btn {
+        margin: 22px 0 0 0;
+    }
+
+    .ambient-glow {
+        width: 340px;
+        height: 340px;
+    }
+
+    .music-player {
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+        right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+        width: 52px !important;
+        height: 52px !important;
+    }
+
+    .play-btn {
+        width: 52px;
+        height: 52px;
+    }
+
+    .play-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+/* HP sangat kecil */
+@media (max-width: 380px) {
+    .letter-container {
+        padding: 18px 10px calc(74px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .polaroid-left,
+    .polaroid-right {
+        gap: 6px;
+    }
+
+    .polaroid {
+        padding: 4px 4px 22px 4px !important;
+    }
+
+    .polaroid-caption {
+        font-size: 0.5rem;
+        bottom: 4px;
+    }
+
+    .main-title {
+        font-size: 1.35rem;
+    }
+}
+
+/* Landscape pendek */
+@media (max-height: 500px) and (orientation: landscape) {
+    .letter-container {
+        padding: 14px 12px calc(64px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .polaroid-gallery {
+        gap: 10px;
+    }
+
+    /* Tetap 3 kolom: 2 grid terpisah, jadi total 6 foto sejajar.
+       3 kolom menjaga lebar tiap foto tetap wajar & tidak overflow. */
+    .polaroid-left,
+    .polaroid-right {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .polaroid-left .polaroid,
+    .polaroid-right .polaroid {
+        padding: 4px 4px 20px 4px !important;
+    }
+
+    .polaroid-caption {
+        font-size: 0.55rem;
+        bottom: 4px;
+    }
+
+    .main-title {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+
+    .ornament {
+        margin-bottom: 6px;
+    }
+
+    .next-btn {
+        margin-top: 14px;
+    }
+}
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .polaroid,
+    .main-title,
+    .special-day,
+    .ornament-dot,
+    .ornament-line,
+    .sparkle,
+    .falling-heart,
+    .ambient-glow {
+        animation: none !important;
+    }
+
+    .letter-container {
+        animation-duration: 0.01ms !important;
+    }
+
+    .polaroid {
+        opacity: 1 !important;
+        transform: rotate(var(--rot, 0deg)) translateY(var(--y, 0px)) !important;
+    }
+}

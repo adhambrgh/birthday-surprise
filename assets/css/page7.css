@@ -1,0 +1,398 @@
+.page7-body {
+    font-family: 'Lato', sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(188, 125, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 80% 30%, rgba(255, 125, 210, 0.11), transparent 28%),
+        radial-gradient(circle at 50% 85%, rgba(117, 74, 180, 0.18), transparent 35%),
+        linear-gradient(135deg, #12091b 0%, #21112f 45%, #2b173b 70%, #12091b 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    color: white;
+}
+
+.page7-body #bg-hearts {
+    z-index: 0 !important;
+}
+
+.page7-body .stars {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.page7-body .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.15; transform: scale(0.6); }
+    50% { opacity: 1; transform: scale(1.4); }
+}
+
+.page7-body .ambient-glow {
+    width: 620px;
+    height: 620px;
+    background:
+        radial-gradient(circle, rgba(187, 130, 255, 0.13) 0%, rgba(255, 120, 210, 0.06) 40%, transparent 70%);
+}
+
+/* =========================
+   MAIN
+   ========================= */
+
+.page7-body .page {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    padding: 70px 20px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInUp 1.8s ease-out;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.page7-body .header {
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.page7-body .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 7vw, 78px);
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #fff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.18), 0 0 35px rgba(207, 139, 255, 0.25);
+    margin-bottom: 12px;
+}
+
+.page7-body .header p {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* =========================
+   WISH CARD
+   ========================= */
+
+.wish-card {
+    width: min(750px, 94vw);
+    padding: 40px 44px 28px;
+    text-align: center;
+    background: rgba(25, 14, 34, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45),
+        0 0 50px rgba(181, 115, 255, 0.08),
+        0 0 80px rgba(255, 107, 157, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    animation: cardAppear 1s ease both, wrapperGlow 4s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.wish-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+    transform: skewX(-25deg);
+    animation: cardShimmer 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes cardShimmer {
+    0%, 70% { left: -60%; }
+    100% { left: 130%; }
+}
+
+@keyframes wrapperGlow {
+    0%, 100% {
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45), 0 0 50px rgba(181, 115, 255, 0.08), 0 0 80px rgba(255, 107, 157, 0.08);
+        border-color: rgba(255, 255, 255, 0.14);
+    }
+    50% {
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45), 0 0 60px rgba(181, 115, 255, 0.18), 0 0 100px rgba(255, 107, 157, 0.16);
+        border-color: rgba(255, 107, 157, 0.35);
+    }
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.wish-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+    text-shadow: 0 0 14px rgba(255, 107, 157, 0.3);
+}
+
+.sub-heading {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 20px;
+}
+
+/* =========================
+    TYPING TEXT
+    ========================= */
+
+.wish-text {
+    max-width: 590px;
+    margin: auto;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15px;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.86);
+    text-align: left;
+}
+
+.wish-text p {
+    margin: 0 0 10px 0;
+}
+
+.wish-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================
+   HEART
+    ========================= */
+
+.wish-card .heart {
+    margin: 18px auto 12px;
+    font-size: 30px;
+    opacity: 0;
+    transform: scale(0.7);
+    animation: heartAppear 1s ease 2s forwards, heartBeat 1.8s ease-in-out 2.5s infinite;
+    filter: drop-shadow(0 0 12px rgba(255, 100, 190, 0.5));
+}
+
+@keyframes heartAppear {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.25); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.12); }
+}
+
+/* =========================
+    NEXT BUTTON
+    ========================= */
+
+/* Tombol lanjut memakai sistem .nav-btn (assets/css/next-button.css).
+   Di sini hanya mengatur posisi khusus halaman ini. */
+.next-btn {
+    margin-top: 25px;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+    margin-top: 30px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 650px) {
+    .page7-body .page {
+        padding: 44px 16px calc(80px + env(safe-area-inset-bottom, 0px));
+        min-height: auto;
+    }
+
+    .page7-body .header {
+        margin-bottom: 26px;
+    }
+
+    .page7-body .header h1 {
+        font-size: clamp(28px, 9vw, 42px);
+        letter-spacing: -0.5px;
+    }
+
+    .page7-body .header p {
+        font-size: 9px;
+        letter-spacing: 3px;
+        line-height: 1.8;
+    }
+
+    .wish-card {
+        padding: 26px 18px 18px;
+        border-radius: 14px;
+        width: 100%;
+    }
+
+    .wish-card h2 {
+        font-size: clamp(17px, 5.5vw, 21px);
+        line-height: 1.4;
+    }
+
+    .sub-heading {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        margin-bottom: 16px;
+    }
+
+    .wish-text {
+        max-height: none;
+        font-size: 13.5px;
+        line-height: 1.8;
+    }
+
+    /* Spasi antar paragraf lebih lega agar mudah dibaca di HP */
+    .wish-text p {
+        margin-bottom: 13px;
+    }
+
+    .wish-card .heart {
+        font-size: 24px;
+        margin: 14px auto 8px;
+    }
+
+    /* Ukuran tombol diatur next-button.css */
+    .next-btn {
+        margin-top: 20px;
+    }
+
+    .footer {
+        margin-top: 22px;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    .music-player {
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+        right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+        width: 52px !important;
+        height: 52px !important;
+    }
+
+    .play-btn { width: 52px; height: 52px; }
+    .play-btn svg { width: 22px; height: 22px; }
+}
+
+/* HP sangat kecil */
+@media (max-width: 380px) {
+    .page7-body .page {
+        padding: 32px 12px calc(74px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .page7-body .header h1 {
+        font-size: 27px;
+    }
+
+    .wish-card {
+        padding: 22px 14px 16px;
+    }
+
+    .wish-text {
+        font-size: 13px;
+        line-height: 1.75;
+    }
+}
+
+/* Landscape pendek */
+@media (max-height: 500px) and (orientation: landscape) {
+    .page7-body .page {
+        padding: 16px 16px calc(62px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .page7-body .header {
+        margin-bottom: 14px;
+    }
+
+    .page7-body .header h1 {
+        font-size: 24px;
+    }
+
+    .wish-card {
+        max-width: 640px;
+        padding: 20px 24px 16px;
+    }
+
+    .wish-text {
+        font-size: 12.5px;
+        line-height: 1.7;
+    }
+
+    .next-btn {
+        margin-top: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page7-body .star,
+    .wish-card,
+    .wish-card::before,
+    .wish-card .heart,
+    .ambient-glow,
+    .bg-heart {
+        animation: none !important;
+    }
+
+    .page7-body .page {
+        animation-duration: 0.01ms !important;
+    }
+
+    .wish-card .heart {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
