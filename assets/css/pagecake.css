@@ -43,15 +43,21 @@
     50% { opacity: 1; transform: scale(1.4); }
 }
 
+/* =========================
+   PAGE — konten ditengah layar
+   ========================= */
+
 .pagecake-body .page {
     position: relative;
     z-index: 1;
     width: 100%;
     min-height: 100dvh;
-    padding: 44px 14px calc(80px + env(safe-area-inset-bottom, 0px));
+    padding: 40px 14px calc(50px + env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 22px;
     animation: pcFadeIn 1.2s ease-out;
 }
 
@@ -66,18 +72,17 @@
 
 .pagecake-body .header {
     text-align: center;
-    margin-bottom: 18px;
 }
 
 .pagecake-body .header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(30px, 8vw, 54px);
+    font-size: clamp(28px, 7vw, 48px);
     font-weight: 600;
     font-style: italic;
     line-height: 1.1;
     color: #fff;
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.18), 0 0 35px rgba(207, 139, 255, 0.25);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .pagecake-body .header p {
@@ -94,8 +99,10 @@
 
 .cake-stage {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     cursor: pointer;
-    padding-top: 8px;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     -webkit-user-select: none;
@@ -112,11 +119,11 @@
     content: '';
     position: absolute;
     left: 50%;
-    bottom: -6px;
+    bottom: -10px;
     transform: translateX(-50%);
-    width: 120%;
-    height: 34px;
-    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.4) 0%, transparent 70%);
+    width: 320px;
+    height: 30px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.42) 0%, transparent 70%);
     border-radius: 50%;
     z-index: -1;
 }
@@ -125,10 +132,10 @@
 .cake-glow {
     position: absolute;
     left: 50%;
-    bottom: 78%;
+    top: -70px;
     transform: translateX(-50%);
-    width: 240px;
-    height: 240px;
+    width: 260px;
+    height: 260px;
     background: radial-gradient(circle, rgba(255, 210, 120, 0.35) 0%, rgba(255, 180, 80, 0.12) 45%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
@@ -148,17 +155,18 @@
 }
 
 /* =========================
-   CANDLES
+   LILIN
    ========================= */
 
 .candles {
     position: relative;
     display: flex;
     justify-content: center;
-    gap: 22px;
-    height: 74px;
+    align-items: flex-end;
+    gap: 24px;
+    height: 76px;
     z-index: 2;
-    margin-bottom: -6px;
+    margin-bottom: -8px;
 }
 
 .candle {
@@ -167,6 +175,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    height: 76px;
 }
 
 .candle-body {
@@ -184,7 +193,7 @@
 /* --- Api lilin --- */
 .flame {
     position: absolute;
-    top: 0;
+    top: 4px;
     left: 50%;
     width: 14px;
     height: 24px;
@@ -200,10 +209,10 @@
     transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.candle[data-i="1"] .flame { animation-delay: 0.15s, 0.2s; }
-.candle[data-i="2"] .flame { animation-delay: 0.3s, 0.05s; }
-.candle[data-i="3"] .flame { animation-delay: 0.1s, 0.35s; }
-.candle[data-i="4"] .flame { animation-delay: 0.25s, 0.12s; }
+.candle:nth-child(2) .flame { animation-delay: 0.15s, 0.2s; }
+.candle:nth-child(3) .flame { animation-delay: 0.3s, 0.05s; }
+.candle:nth-child(4) .flame { animation-delay: 0.1s, 0.35s; }
+.candle:nth-child(5) .flame { animation-delay: 0.25s, 0.12s; }
 
 @keyframes flameFlicker {
     0% { transform: scaleY(1) scaleX(1); box-shadow: 0 0 14px 5px rgba(255, 190, 80, 0.6), 0 0 34px 12px rgba(255, 150, 60, 0.25); }
@@ -216,7 +225,6 @@
     66% { margin-left: -5.5px; }
 }
 
-/* Api padam */
 .flame.out {
     animation: none;
     opacity: 0;
@@ -225,12 +233,12 @@
 }
 
 /* =========================
-   SMOKE
+   ASAP
    ========================= */
 
 .smoke {
     position: absolute;
-    top: -20px;
+    top: -24px;
     left: 50%;
     width: 30px;
     height: 60px;
@@ -267,125 +275,119 @@
 }
 
 /* =========================
-   CAKE LAYERS (CSS murni)
+   LAPISAN KUE — simetris & rapi
+   Lebar: 160 / 214 / 264 (bertingkat rapi)
    ========================= */
 
-.cake-top {
+.cake-tier {
     position: relative;
-    z-index: 1;
-    width: 170px;
+    border-radius: 12px;
+    box-shadow: inset 0 -9px 15px rgba(0, 0, 0, 0.16), 0 7px 18px rgba(0, 0, 0, 0.35);
+}
+
+.tier-top {
+    width: 160px;
     height: 56px;
     background: linear-gradient(180deg, #ffe4ec 0%, #ffb7cd 45%, #ff8fb0 100%);
-    border-radius: 14px 14px 8px 8px;
-    box-shadow: inset 0 -8px 14px rgba(214, 51, 132, 0.25), 0 6px 16px rgba(0, 0, 0, 0.35);
+    z-index: 3;
 }
 
-/* Frosting gelombang di tepi lapis atas */
-.cake-top::before {
-    content: '';
-    position: absolute;
-    top: -9px;
-    left: -4px;
-    right: -4px;
-    height: 20px;
-    background:
-        radial-gradient(circle at 10% 60%, #fff 0 9px, transparent 10px),
-        radial-gradient(circle at 30% 45%, #fff 0 10px, transparent 11px),
-        radial-gradient(circle at 50% 60%, #fff 0 9px, transparent 10px),
-        radial-gradient(circle at 70% 45%, #fff 0 10px, transparent 11px),
-        radial-gradient(circle at 90% 60%, #fff 0 9px, transparent 10px),
-        linear-gradient(#fff, #fff);
-    background-size: 100% 100%;
-    border-radius: 8px 8px 4px 4px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
-}
-
-.cake-mid {
-    position: relative;
-    z-index: 1;
+.tier-mid {
     width: 214px;
-    height: 62px;
-    margin-top: 4px;
+    height: 58px;
     background: linear-gradient(180deg, #d9b8ff 0%, #b07cff 50%, #8e56e0 100%);
-    border-radius: 10px;
-    box-shadow: inset 0 -8px 14px rgba(80, 30, 150, 0.3), 0 6px 16px rgba(0, 0, 0, 0.35);
+    border-radius: 0 0 12px 12px;
+    z-index: 2;
 }
 
-.cake-mid::before {
-    content: '';
+.tier-base {
+    width: 264px;
+    height: 56px;
+    background: linear-gradient(180deg, #ffd9e5 0%, #ff9dbd 50%, #ef6f97 100%);
+    border-radius: 0 0 14px 14px;
+    z-index: 1;
+}
+
+/* Frosting: strip putih rapi + tetesan bulat seragam */
+.frosting {
     position: absolute;
     top: -7px;
-    left: -4px;
-    right: -4px;
-    height: 16px;
-    background:
-        radial-gradient(circle at 12% 55%, #fff 0 8px, transparent 9px),
-        radial-gradient(circle at 34% 42%, #fff 0 9px, transparent 10px),
-        radial-gradient(circle at 56% 55%, #fff 0 8px, transparent 9px),
-        radial-gradient(circle at 78% 42%, #fff 0 9px, transparent 10px),
-        linear-gradient(#fff, #fff);
-    border-radius: 6px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #fff6f9 100%);
+    border-radius: 9px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.14);
+    z-index: 4;
 }
 
-.cake-base {
-    position: relative;
-    z-index: 1;
-    width: 254px;
-    height: 46px;
-    margin-top: 5px;
-    background: linear-gradient(180deg, #ffd9e5 0%, #ff9dbd 50%, #ef6f97 100%);
-    border-radius: 8px 8px 10px 10px;
-    box-shadow: inset 0 -7px 12px rgba(190, 40, 100, 0.3), 0 6px 16px rgba(0, 0, 0, 0.35);
-}
-
-.cake-plate {
-    position: relative;
-    z-index: 1;
-    width: 296px;
-    height: 16px;
-    margin-top: 3px;
-    background: linear-gradient(180deg, #f2e9ff 0%, #cdb8ec 60%, #a58fd0 100%);
-    border-radius: 50%;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
-}
-
-/* Taburan sprinkle */
-.sprinkle {
+.frosting::after {
+    content: '';
     position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 9px;
+    background-image: radial-gradient(circle at 10px 0, #ffffff 7.5px, transparent 8px);
+    background-size: 20px 9px;
+    background-repeat: repeat-x;
+}
+
+/* Sprinkle: satu baris rata dalam tiap lapis, terpotong rapi */
+.sprinkles {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 10px;
+    overflow: hidden;
+    border-radius: inherit;
+    z-index: 2;
+}
+
+.sprinkles i {
     width: 12px;
     height: 5px;
     border-radius: 3px;
-    transform: rotate(var(--r, 20deg));
+    flex: none;
+    transform: rotate(32deg);
 }
 
-.s1 { --r: 25deg;  background: #ff5f8f; top: 26px; left: 24px; }
-.s2 { --r: -30deg; background: #ffd54f; top: 40px; left: 70px; }
-.s3 { --r: 65deg;  background: #5cc8ff; top: 22px; left: 118px; }
-.s4 { --r: -12deg; background: #7ee6a1; top: 44px; left: 148px; }
-.s5 { --r: 42deg;  background: #b07cff; top: 14px; left: 52px; }
-.s6 { --r: -55deg; background: #ff9d5c; top: 46px; left: 188px; }
+.sprinkles i:nth-child(even) {
+    transform: rotate(-38deg);
+}
 
-.cake-mid .s1 { top: 30px; left: 40px; }
-.cake-mid .s2 { top: 18px; left: 108px; background: #ffd54f; }
-.cake-mid .s3 { top: 42px; left: 160px; }
-.cake-mid .s4 { top: 46px; left: 74px; background: #ff5f8f; }
+.sprinkles i:nth-child(6n+1) { background: #ff5f8f; }
+.sprinkles i:nth-child(6n+2) { background: #ffd54f; }
+.sprinkles i:nth-child(6n+3) { background: #5cc8ff; }
+.sprinkles i:nth-child(6n+4) { background: #7ee6a1; }
+.sprinkles i:nth-child(6n+5) { background: #b07cff; }
+.sprinkles i:nth-child(6n)   { background: #ff9d5c; }
+
+/* Piring */
+.cake-plate {
+    position: relative;
+    width: 306px;
+    height: 18px;
+    margin-top: 4px;
+    background: linear-gradient(180deg, #f2e9ff 0%, #cdb8ec 60%, #a58fd0 100%);
+    border-radius: 50%;
+    box-shadow: 0 9px 20px rgba(0, 0, 0, 0.42);
+    z-index: 0;
+}
 
 /* =========================
-   HINT
+   HINT — Klik untuk tiup
    ========================= */
 
 .blow-hint {
-    margin-top: 26px;
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(24px, 6vw, 34px);
-    color: rgba(255, 255, 255, 0.85);
-    text-shadow: 0 0 16px rgba(255, 150, 200, 0.4);
+    font-size: clamp(26px, 7vw, 38px);
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 16px rgba(255, 150, 200, 0.45);
     animation: hintPulse 1.6s ease-in-out infinite;
     transition: opacity 0.5s ease;
-}
-
-.blow-hint span {
-    font-family: inherit;
 }
 
 .blow-hint.hidden {
@@ -394,7 +396,7 @@
 }
 
 @keyframes hintPulse {
-    0%, 100% { transform: scale(1); opacity: 0.75; }
+    0%, 100% { transform: scale(1); opacity: 0.7; }
     50% { transform: scale(1.07); opacity: 1; }
 }
 
@@ -403,9 +405,8 @@
    ========================= */
 
 .wish-text {
-    margin-top: 30px;
     max-width: 640px;
-    min-height: 84px;
+    min-height: 76px;
     text-align: center;
     font-family: 'Great Vibes', cursive;
     font-size: clamp(24px, 6.5vw, 40px);
@@ -435,49 +436,50 @@
 @media (max-width: 430px) {
     .cake-stage {
         transform: scale(0.92);
-        margin-top: -6px;
     }
+
+    .cake-plate { width: 290px; }
 }
 
 @media (max-width: 360px) {
     .cake-stage {
         transform: scale(0.82);
-        margin-top: -14px;
     }
 }
 
-@media (min-width: 700px) {
+@media (max-height: 700px) and (orientation: portrait) {
     .pagecake-body .page {
-        padding-top: 60px;
+        gap: 14px;
+        padding-top: 24px;
+    }
+
+    .cake-stage {
+        transform: scale(0.88);
     }
 }
 
 @media (max-height: 500px) and (orientation: landscape) {
     .pagecake-body .page {
-        padding: 14px 12px calc(62px + env(safe-area-inset-bottom, 0px));
-    }
-
-    .pagecake-body .header {
-        margin-bottom: 6px;
+        padding: 12px;
+        gap: 10px;
     }
 
     .pagecake-body .header h1 {
         font-size: 22px;
     }
 
-    .cake-stage {
-        transform: scale(0.7);
-        margin-top: -24px;
-        margin-bottom: -34px;
+    .pagecake-body .header p {
+        display: none;
     }
 
-    .blow-hint {
-        margin-top: 12px;
+    .cake-stage {
+        transform: scale(0.62);
+        margin: -50px 0;
     }
 
     .wish-text {
-        margin-top: 14px;
-        min-height: 60px;
+        min-height: 54px;
+        font-size: clamp(20px, 4vw, 28px);
     }
 }
 
